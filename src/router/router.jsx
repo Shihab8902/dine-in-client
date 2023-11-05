@@ -5,6 +5,7 @@ import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import SingleFood from "../pages/SingleFood/SingleFood";
+import axios from "axios";
 
 export const router = createBrowserRouter([
     {
@@ -26,7 +27,8 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/food/:id",
-                element: <SingleFood />
+                element: <SingleFood />,
+                loader: ({ params }) => axios.get(`http://localhost:9000/food/${params.id}`)
             }
         ]
     }

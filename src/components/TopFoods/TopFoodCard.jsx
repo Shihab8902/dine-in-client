@@ -1,12 +1,12 @@
 import Aos from 'aos';
 import React, { useEffect } from 'react'
 import 'aos/dist/aos.css';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const TopFoodCard = ({ food }) => {
     const { image, name, category, price, _id } = food;
 
-    const navigate = useNavigate();
+
 
     //Initialize aos
     useEffect(() => {
@@ -25,7 +25,7 @@ const TopFoodCard = ({ food }) => {
                 <p className=' font-sans font-semibold text-xl text-orange-500 '>${price}</p>
                 <p className='text-gray-500'>{category}</p>
             </div>
-            <button onClick={() => navigate(`/food/${_id}`)} className='bg-orange-500 w-full hover:bg-orange-600 rounded-lg py-4 mt-5 font-semibold text-lg text-white'>View Details</button>
+            <Link to={`/food/${_id}`}> <button className='bg-orange-500 w-full hover:bg-orange-600 rounded-lg py-4 mt-5 font-semibold text-lg text-white'>View Details</button></Link>
         </div>
     </div>
 }
