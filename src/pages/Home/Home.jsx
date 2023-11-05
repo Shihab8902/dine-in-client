@@ -6,7 +6,7 @@ import About from '../../components/About/About'
 import Advertise from '../../components/Advertise/Advertise'
 
 const Home = () => {
-    return <section >
+    return <section className='overflow-x-hidden'>
 
         <Helmet>
             <title>Dinein | Home</title>

@@ -35,15 +35,17 @@ const TopFoods = () => {
                 }
             </div> :
 
-                <div className='flex flex-cols items-center justify-center'>
+                <div className='flex flex-col items-center justify-center'>
                     <img className=' w-80' src={loadingAnimation} alt="" />
                     <p className='text-2xl font-bold text-center'>Cooking....</p>
                 </div>
         }
 
-        <div className='text-center mt-20'>
-            <Link to="/foods"> <button className='border border-orange-500 text-lg font-semibold px-10 hover:bg-orange-500 hover:text-white  transition-all duration-300 py-3 rounded'>Show All</button></Link>
-        </div>
+        {
+            topFoods.length > 0 && <div className='text-center mt-20'>
+                <Link to="/foods"> <button className='border border-orange-500 text-lg font-semibold px-10 hover:bg-orange-500 hover:text-white  transition-all duration-300 py-3 rounded'>Show All</button></Link>
+            </div>
+        }
 
 
 

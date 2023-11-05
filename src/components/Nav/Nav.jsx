@@ -50,7 +50,7 @@ const Nav = () => {
                     <Link to="/login"> <button className='bg-orange-500 hidden md:inline text-white font-semibold px-8 text-lg py-2 rounded'>Login</button></Link>
                     <Link to="/login" className='text-2xl font-semibold md:hidden'><AiOutlineUserAdd /></Link>
 
-                    <div className="md:hidden">
+                    <div className="md:hidden ">
                         {
                             isMenuOpen ? <button className='text-2xl ' onClick={() => setIsMenuOpen(!isMenuOpen)}><AiOutlineClose /></button>
                                 :
@@ -58,7 +58,7 @@ const Nav = () => {
                         }
 
                     </div>
-                    <div className={`md:hidden  absolute top-20 right-0 left-0 bg-gray-200 overflow-hidden transition-all duration-300 ${isMenuOpen ? 'h-64' : 'h-0'}`}>
+                    <div className={`md:hidden z-20 absolute top-20  right-0 left-0 bg-gray-200 overflow-hidden transition-all duration-300 ${isMenuOpen ? 'h-64' : 'h-0'}`}>
                         <ul className="h-full flex flex-col py-10 space-y-4 px-5">
                             <li className='font-semibold text-lg'> <NavLink to="/">Home</NavLink></li>
                             <li className='font-semibold text-lg'> <NavLink to="/foods">All Food Items</NavLink></li>

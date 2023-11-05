@@ -39,7 +39,7 @@ const Advertise = () => {
                     </div>
                 </div>
                     :
-                    <div className='flex flex-cols items-center justify-center'>
+                    <div className='flex flex-col items-center justify-center'>
                         <img className=' w-80' src={loadingAnimation} alt="" />
                         <p className='text-2xl font-bold text-center'>Cooking....</p>
                     </div>
