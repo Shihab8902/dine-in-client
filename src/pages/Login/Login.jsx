@@ -1,19 +1,51 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import bg from '../../assets/images/login.jpg';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { HiOutlineMail } from 'react-icons/hi';
 import { AiOutlineLock } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
 import { AiOutlineEyeInvisible } from 'react-icons/ai';
 import { AiOutlineEye } from 'react-icons/ai';
+import { UserContext } from '../../context/AuthProvider';
+import Swal from 'sweetalert2';
 
 
 const Login = () => {
 
+    const navigate = useNavigate();
+
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
+    const { signInUser } = useContext(UserContext);
 
+
+    const handleSubmit = e => {
+        e.preventDefault();
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        signInUser(email, password)
+            .then(userCredential => {
+                if (userCredential.user) {
+                    Swal.fire({
+                        title: "Logged in!",
+                        text: "Your account has been logged in successfully.",
+                        icon: "success"
+                    })
+                    form.reset();
+                    navigate("/")
+                }
+            })
+            .catch(error => {
+                Swal.fire({
+                    title: "Error",
+                    text: error.message,
+                    icon: "error"
+                })
+            })
+    }
 
 
     return <div className=' flex my-10 '>
@@ -26,7 +58,7 @@ const Login = () => {
             <h3 className=' font-bold text-[32px] text-center'>Welcome back!</h3>
             <p className='  font-medium text-gray-400 mt-3 text-center'>Enter your details to login to your account.</p>
 
-            <form >
+            <form onSubmit={handleSubmit}>
                 <div className='w-full bg-white border flex items-center rounded-lg my-5'>
                     <span className=' text-gray-400 text-xl ml-3'> <HiOutlineMail /></span>
                     <input className='w-full p-3  outline-none font-semibold rounded-lg placeholder:font-medium' type="email" name="email" id="email" placeholder='Enter email address' required />
@@ -39,8 +71,6 @@ const Login = () => {
                         {
                             isPasswordVisible ? <AiOutlineEye /> : <AiOutlineEyeInvisible />
                         }
-
-
                     </span>
 
                 </div>

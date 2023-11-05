@@ -1,15 +1,47 @@
-import React, { useState } from 'react'
-import { Link, NavLink } from 'react-router-dom';
+import React, { useContext, useState } from 'react'
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import './nav.css';
+import { UserContext } from '../../context/AuthProvider';
 
 import { AiOutlineUserAdd } from 'react-icons/ai';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { AiOutlineClose } from 'react-icons/ai';
+import { FiLogOut } from 'react-icons/fi';
+import Swal from 'sweetalert2';
+
 
 const Nav = () => {
 
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const navigate = useNavigate();
 
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { user, logOutUser } = useContext(UserContext);
+
+
+    const handleLogOut = () => {
+        Swal.fire({
+            title: 'Log Out?',
+            text: "Are you sure want to log out?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: 'red',
+            cancelButtonColor: 'green',
+            confirmButtonText: 'Confirm'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                logOutUser()
+                    .then(() => {
+                        Swal.fire(
+                            'Logged Out!',
+                            'Your account has been logged out successfully.',
+                            'success'
+                        )
+                        navigate("/")
+                    })
+
+            }
+        })
+    }
 
 
 
@@ -26,29 +58,36 @@ const Nav = () => {
 
                 <div className='flex items-center gap-6'>
 
-                    <div className='flex hidden items-center gap-4'>
-                        <div className="dropdown  dropdown-end">
-                            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                                <div className="w-10 rounded-full">
-                                    <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-                                </div>
-                            </label>
-                            <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-                                <li>
-                                    <a className="justify-between">
-                                        Profile
-                                        <span className="badge">New</span>
-                                    </a>
-                                </li>
-                                <li><a>Settings</a></li>
-                                <li><a>Logout</a></li>
-                            </ul>
+                    {
+                        user ? <div className='flex  items-center gap-4'>
+                            <div className="dropdown  dropdown-end">
+                                <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                                    <div className="w-10 rounded-full border">
+                                        <img src={user?.photoURL || "https://i.ibb.co/FKyGxmB/gray-photo-placeholder-icon-design-ui-vector-35850819.webp"} />
+                                    </div>
+                                </label>
+                                <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+                                    <li>
+                                        <a className="justify-between">
+                                            Profile
+                                            <span className="badge">New</span>
+                                        </a>
+                                    </li>
+                                    <li><a>Settings</a></li>
+                                    <li><a>Logout</a></li>
+                                </ul>
+                            </div>
+                            <button onClick={handleLogOut} className='bg-red-500 hidden md:inline text-white font-semibold px-7 text-lg py-2 rounded'>Logout</button>
+                            <button onClick={handleLogOut} className='text-2xl font-semibold md:hidden'><FiLogOut /></button>
                         </div>
-                        <Link to="/login"> <button className='bg-orange-500 hidden md:inline text-white font-semibold px-8 text-lg py-2 rounded'>Logout</button></Link>
-                    </div>
+                            :
+                            <div>
+                                <Link to="/login"> <button className='bg-orange-500 hidden md:inline text-white font-semibold px-8 text-lg py-2 rounded'>Login</button></Link>
+                                <Link to="/login" className='text-2xl font-semibold md:hidden'><AiOutlineUserAdd /></Link>
+                            </div>
+                    }
 
-                    <Link to="/login"> <button className='bg-orange-500 hidden md:inline text-white font-semibold px-8 text-lg py-2 rounded'>Login</button></Link>
-                    <Link to="/login" className='text-2xl font-semibold md:hidden'><AiOutlineUserAdd /></Link>
+
 
                     <div className="md:hidden ">
                         {
