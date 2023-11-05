@@ -6,6 +6,10 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import SingleFood from "../pages/SingleFood/SingleFood";
 import axios from "axios";
+import MyAdd from "../pages/MyAdd/MyAdd";
+import AddFood from "../pages/AddFood/AddFood";
+import PrivateRoute from "../hooks/PrivateRoute";
+import UpdateFood from "../pages/UpdateFood/UpdateFood";
 
 export const router = createBrowserRouter([
     {
@@ -28,6 +32,25 @@ export const router = createBrowserRouter([
             {
                 path: "/food/:id",
                 element: <SingleFood />,
+                loader: ({ params }) => axios.get(`http://localhost:9000/food/${params.id}`)
+            },
+            {
+                path: "/myAdd",
+                element: <PrivateRoute>
+                    <MyAdd />
+                </PrivateRoute>
+            },
+            {
+                path: "/addFood",
+                element: <PrivateRoute>
+                    <AddFood />
+                </PrivateRoute>
+            },
+            {
+                path: "/updateFood/:id",
+                element: <PrivateRoute>
+                    <UpdateFood />
+                </PrivateRoute>,
                 loader: ({ params }) => axios.get(`http://localhost:9000/food/${params.id}`)
             }
         ]

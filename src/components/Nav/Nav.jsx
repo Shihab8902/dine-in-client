@@ -66,15 +66,10 @@ const Nav = () => {
                                         <img src={user?.photoURL || "https://i.ibb.co/FKyGxmB/gray-photo-placeholder-icon-design-ui-vector-35850819.webp"} />
                                     </div>
                                 </label>
-                                <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-                                    <li>
-                                        <a className="justify-between">
-                                            Profile
-                                            <span className="badge">New</span>
-                                        </a>
-                                    </li>
-                                    <li><a>Settings</a></li>
-                                    <li><a>Logout</a></li>
+                                <ul tabIndex={0} className="mt-3 z-[1] p-2 bg-gray-100 shadow menu menu-sm dropdown-content  rounded-lg w-52">
+                                    <li className='font-semibold mb-3'><Link className='hover:underline text-base' to="/myAdd">My added food items</Link></li>
+                                    <li className='font-semibold mb-3'><Link className='hover:underline text-base' to="/addFood">Add a food item</Link></li>
+                                    <li className='font-semibold '><Link className='hover:underline text-base' to="/myOrder">My ordered food items</Link></li>
                                 </ul>
                             </div>
                             <button onClick={handleLogOut} className='bg-red-500 hidden md:inline text-white font-semibold px-7 text-lg py-2 rounded'>Logout</button>

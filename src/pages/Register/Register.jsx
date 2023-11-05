@@ -23,7 +23,7 @@ const Register = () => {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const [isPasswordError, setIsPasswordError] = useState(false);
 
-    const { createUser, signInWithGoogle } = useContext(UserContext);
+    const { createUser } = useContext(UserContext);
 
 
     const handleSubmit = e => {
@@ -76,26 +76,7 @@ const Register = () => {
 
 
 
-    const handleSignInWithGoogle = () => {
-        signInWithGoogle()
-            .then(result => {
-                if (result) {
-                    Swal.fire({
-                        title: "Registered!",
-                        text: "Your account has been registered successfully.",
-                        icon: "success"
-                    })
-                    navigate("/");
-                }
-            })
-            .catch(error => {
-                Swal.fire({
-                    title: "Error",
-                    text: error.message,
-                    icon: "error"
-                })
-            })
-    }
+
 
 
 
@@ -128,7 +109,7 @@ const Register = () => {
 
                     <div className='w-full bg-white border flex items-center rounded-lg my-5'>
                         <span className=' text-gray-400 text-xl ml-3'> <BiPhotoAlbum /></span>
-                        <input className='w-full p-3  outline-none font-semibold rounded-lg placeholder:font-medium' type="url" name="photoURL" id="photoURL" placeholder='Enter photo URL' required />
+                        <input className='w-full p-3  outline-none font-semibold rounded-lg placeholder:font-medium' type="text" name="photoURL" id="photoURL" placeholder='Enter photo URL' required />
                     </div>
 
                     <div className={`w-full bg-white border flex items-center ${isPasswordError && "border border-red-500"} rounded-lg`}>
@@ -151,9 +132,7 @@ const Register = () => {
 
                 <hr className='border-black ' />
 
-                <div className='flex justify-center mt-5'>
-                    <button onClick={handleSignInWithGoogle} className='flex items-center font-semibold gap-1 border bg-gray-200 rounded-lg py-2 px-3'><FcGoogle className='text-lg' /> Continue with Google</button>
-                </div>
+
 
                 <p className='mt-5 text-center font-semibold text-sm'>Already have an account? <Link to="/login" className='text-red-600 hover:underline'>Login</Link></p>
 

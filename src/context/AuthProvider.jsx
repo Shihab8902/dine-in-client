@@ -53,7 +53,14 @@ const AuthProvider = ({ children }) => {
             const loggedUser = { email: userEmail };
             setUser(currentUser);
             if (currentUser) {
-                axios.post('http://localhost:9000/jwt', loggedUser, { withCredentials: true })
+                axios.post('http://localhost:9000/jwt', loggedUser, { withCredentials: true });
+                axios.get('http://localhost:9000/users', { withCredentials: true })
+                    .then(res => {
+                        const isExist = res.data?.find(dbUser => dbUser.email === currentUser.email);
+                        if (!isExist) {
+                            axios.post('http://localhost:9000/users', currentUser);
+                        }
+                    });
             } else {
                 axios.get('http://localhost:9000/logout', { withCredentials: true })
 
