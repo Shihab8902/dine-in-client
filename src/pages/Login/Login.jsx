@@ -9,6 +9,7 @@ import { AiOutlineEyeInvisible } from 'react-icons/ai';
 import { AiOutlineEye } from 'react-icons/ai';
 import { UserContext } from '../../context/AuthProvider';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet';
 
 
 const Login = () => {
@@ -17,7 +18,7 @@ const Login = () => {
 
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
-    const { signInUser } = useContext(UserContext);
+    const { signInUser, signInWithGoogle } = useContext(UserContext);
 
 
     const handleSubmit = e => {
@@ -48,7 +49,35 @@ const Login = () => {
     }
 
 
+
+    const handleSignInWithGoogle = () => {
+        signInWithGoogle()
+            .then(result => {
+                if (result) {
+                    Swal.fire({
+                        title: "Logged in!",
+                        text: "Your account has been logged in successfully.",
+                        icon: "success"
+                    })
+                    navigate("/");
+                }
+            })
+            .catch(error => {
+                Swal.fire({
+                    title: "Error",
+                    text: error.message,
+                    icon: "error"
+                })
+            })
+    }
+
+
     return <div className=' flex my-10 '>
+
+        <Helmet>
+            <title>Dinein | Login</title>
+        </Helmet>
+
         <div className='flex-1 hidden lg:block'>
             <img src={bg} className='w-full h-full lg:rounded-tl-lg lg:rounded-bl-lg' alt="" />
         </div>
@@ -83,7 +112,7 @@ const Login = () => {
             <hr className='border-black ' />
 
             <div className='flex justify-center mt-5'>
-                <button className='flex items-center font-semibold gap-1 border bg-gray-200 rounded-lg py-2 px-3'><FcGoogle className='text-lg' /> Continue with Google</button>
+                <button onClick={handleSignInWithGoogle} className='flex items-center font-semibold gap-1 border bg-gray-200 rounded-lg py-2 px-3'><FcGoogle className='text-lg' /> Continue with Google</button>
             </div>
 
             <p className='mt-5 text-center font-semibold text-sm'>Don't have an account? <Link to="/register" className='text-red-600 hover:underline'>Register</Link></p>

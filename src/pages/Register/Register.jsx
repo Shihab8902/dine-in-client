@@ -15,6 +15,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { UserContext } from '../../context/AuthProvider';
 import { updateProfile } from 'firebase/auth';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet';
 
 const Register = () => {
     const navigate = useNavigate();
@@ -22,7 +23,7 @@ const Register = () => {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const [isPasswordError, setIsPasswordError] = useState(false);
 
-    const { createUser } = useContext(UserContext);
+    const { createUser, signInWithGoogle } = useContext(UserContext);
 
 
     const handleSubmit = e => {
@@ -77,14 +78,40 @@ const Register = () => {
                 })
             })
 
+    }
 
 
+
+    const handleSignInWithGoogle = () => {
+        signInWithGoogle()
+            .then(result => {
+                if (result) {
+                    Swal.fire({
+                        title: "Registered!",
+                        text: "Your account has been registered successfully.",
+                        icon: "success"
+                    })
+                    navigate("/");
+                }
+            })
+            .catch(error => {
+                Swal.fire({
+                    title: "Error",
+                    text: error.message,
+                    icon: "error"
+                })
+            })
     }
 
 
 
     return (
         <div className=' flex my-10 '>
+
+            <Helmet>
+                <title>Dinein | Register</title>
+            </Helmet>
+
             <div className='flex-1 hidden lg:block'>
                 <img src={bg} className='w-full h-full lg:rounded-tl-lg lg:rounded-bl-lg' alt="" />
             </div>
@@ -131,7 +158,7 @@ const Register = () => {
                 <hr className='border-black ' />
 
                 <div className='flex justify-center mt-5'>
-                    <button className='flex items-center font-semibold gap-1 border bg-gray-200 rounded-lg py-2 px-3'><FcGoogle className='text-lg' /> Continue with Google</button>
+                    <button onClick={handleSignInWithGoogle} className='flex items-center font-semibold gap-1 border bg-gray-200 rounded-lg py-2 px-3'><FcGoogle className='text-lg' /> Continue with Google</button>
                 </div>
 
                 <p className='mt-5 text-center font-semibold text-sm'>Already have an account? <Link to="/login" className='text-red-600 hover:underline'>Login</Link></p>
