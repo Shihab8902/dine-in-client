@@ -44,12 +44,6 @@ const Register = () => {
             return;
         }
 
-        if (!/^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=\[\]{};':",.<>/?])/.test(password)) {
-            toast.error("Password should contain at least one capital letter and special character!");
-            setIsPasswordError(true);
-            return;
-        }
-
 
         createUser(email, password)
             .then(userCredential => {
