@@ -83,7 +83,7 @@ const UpdateFood = () => {
                         <option value="Other">Other</option>
                     </select>
                     <input className='w-full mt-5 p-4 border-2 text-lg font-semibold placeholder:font-normal  outline-none rounded-md bg-white' type="text" name="username" id="username" defaultValue={username} placeholder='Enter Food Chef Name' required />
-                    <input className='w-full p-4 border-2 mt-5 text-lg font-semibold placeholder:font-normal  outline-none rounded-md bg-white' type="text" name="price" id="price" defaultValue={price} placeholder='Enter Food Price' required />
+                    <input className='w-full p-4 border-2 mt-5 text-lg font-semibold placeholder:font-normal  outline-none rounded-md bg-white' type="number" name="price" id="price" defaultValue={price} placeholder='Enter Food Price' required />
                 </div>
 
 

@@ -13,6 +13,8 @@ const Foods = () => {
     const [totalFoods, setTotalFoods] = useState(0);
     const numberOfPages = Math.ceil(totalFoods / foodsPerPage);
     const [currentPage, setCurrentPage] = useState(0);
+    const [searchStr, setSearchStr] = useState('');
+    const [filterStr, setFilterStr] = useState('');
 
     const pages = [...Array(numberOfPages).keys()];
 
@@ -20,12 +22,11 @@ const Foods = () => {
 
 
     useEffect(() => {
-        axios.get(`http://localhost:9000/foods?page=${currentPage}&size=${foodsPerPage}`)
+        axios.get(`http://localhost:9000/foods?page=${currentPage}&size=${foodsPerPage}&searchStr=${searchStr}&filterStr=${filterStr}`)
             .then(res => {
                 setAllFoods(res.data);
             });
-    }, [currentPage]);
-
+    }, [currentPage, searchStr, filterStr]);
 
 
 
@@ -36,7 +37,16 @@ const Foods = () => {
     }, []);
 
 
+    const handleSearch = e => {
+        e.preventDefault();
+        const searchText = e.target.search.value;
+        setSearchStr(searchText);
+    };
 
+
+    const handleFilter = e => {
+        setFilterStr(e.target.value);
+    }
 
 
     return <div className='min-h-screen mt-5 mb-10'>
@@ -51,17 +61,16 @@ const Foods = () => {
             </div>
         </div>
 
-        <form className=' md:w-3/4 lg:w-1/2 mx-auto flex  border-2 rounded-lg border-orange-500 items-center mt-10'>
+        <form onSubmit={handleSearch} className=' md:w-3/4 lg:w-1/2 mx-auto flex  border-2 rounded-lg border-orange-500 items-center mt-10'>
             <input className='w-full font-semibold placeholder:font-normal rounded-tl-lg rounded-bl-lg outline-none py-4 px-5' type="search" name="search" id="search" placeholder='Search by name' />
             <button className='text-2xl  mr-4'><AiOutlineSearch /></button>
         </form>
 
         <div className='flex mt-8 mr-5 justify-end'>
-            <select className='font-semibold outline-none cursor-pointer border bg-gray-100 px-3 rounded-md py-1' name="filter" id="filter">
+            <select onChange={handleFilter} className='font-semibold outline-none cursor-pointer border bg-gray-100 px-3 rounded-md py-1' name="filter" id="filter">
                 <option className='font-semibold text-gray-400' value="">Filter By</option>
                 <option className='font-semibold' value="lowToHigh">Price [low to High]</option>
                 <option className='font-semibold' value="highToLow">Price [high to low]</option>
-                <option className='font-semibold' value="inStock">In Stock</option>
             </select>
         </div>
 

@@ -16,7 +16,7 @@ const SingleFood = () => {
         </Helmet>
 
         {
-            data ? <div className='flex gap-6 flex-col lg:flex-row my-10 '>
+            data ? <div className='flex gap-6 flex-col items-center lg:flex-row my-10 '>
 
                 <div className='flex-1 '>
                     <img src={image} className='h-full block w-full rounded-lg' alt={name} />
