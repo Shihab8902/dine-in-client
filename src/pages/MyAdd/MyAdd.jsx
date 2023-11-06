@@ -11,7 +11,7 @@ const MyAdd = () => {
     const [foods, setFoods] = useState([]);
 
     useEffect(() => {
-        user?.email && axiosSecure.get(`http://localhost:9000/myFood?email=${user?.email}`)
+        user?.email && axiosSecure.get(`https://dinein-server.vercel.app/myFood?email=${user?.email}`)
             .then(res => setFoods(res.data))
     }, [user]);
 

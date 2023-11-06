@@ -11,7 +11,7 @@ const Advertise = () => {
 
     //Get advertise item
     useEffect(() => {
-        axios.get('http://localhost:9000/food/6548e0a2a69c9e326ce30602')
+        axios.get('https://dinein-server.vercel.app/food/6548e0a2a69c9e326ce30602')
             .then(res => setAdItem(res.data))
     }, []);
 

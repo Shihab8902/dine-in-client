@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 const axiosSecure = axios.create({
-    baseURL: "http://localhost:9000",
+    baseURL: "https://dinein-server.vercel.app",
     withCredentials: true
 });
 

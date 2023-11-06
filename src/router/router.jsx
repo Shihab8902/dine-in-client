@@ -40,7 +40,7 @@ export const router = createBrowserRouter([
             {
                 path: "/food/:id",
                 element: <SingleFood />,
-                loader: ({ params }) => axios.get(`http://localhost:9000/food/${params.id}`)
+                loader: ({ params }) => axios.get(`https://dinein-server.vercel.app/food/${params.id}`)
             },
             {
                 path: "/myAdd",
@@ -59,14 +59,14 @@ export const router = createBrowserRouter([
                 element: <PrivateRoute>
                     <UpdateFood />
                 </PrivateRoute>,
-                loader: ({ params }) => axios.get(`http://localhost:9000/food/${params.id}`)
+                loader: ({ params }) => axios.get(`https://dinein-server.vercel.app/food/${params.id}`)
             },
             {
                 path: "/purchase/:id",
                 element: <PrivateRoute>
                     <PurchaseFood />
                 </PrivateRoute>,
-                loader: ({ params }) => axios.get(`http://localhost:9000/food/${params.id}`)
+                loader: ({ params }) => axios.get(`https://dinein-server.vercel.app/food/${params.id}`)
             },
             {
                 path: "/myOrder",

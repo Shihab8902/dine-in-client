@@ -58,12 +58,12 @@ const PurchaseFood = () => {
         }
 
         //Post new purchase to the server
-        axios.post("http://localhost:9000/order", purchasedFood)
+        axios.post("https://dinein-server.vercel.app/order", purchasedFood)
             .then(res => {
                 if (res.data.acknowledged) {
 
                     const newPurchaseCount = purchaseCount + parseInt(purchaseQty);
-                    axios.put(`http://localhost:9000/purchaseCount/${_id}`, { count: newPurchaseCount })
+                    axios.put(`https://dinein-server.vercel.app/purchaseCount/${_id}`, { count: newPurchaseCount })
                         .then(res => {
                             if (res.data.modifiedCount > 0) {
                                 Swal.fire({

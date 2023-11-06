@@ -29,7 +29,7 @@ const UpdateFood = () => {
 
         const newItem = { name, image, category, quantity, price, username, userEmail, foodOrigin, description };
 
-        axios.put(`http://localhost:9000/updateFood/${_id}`, newItem)
+        axios.put(`https://dinein-server.vercel.app/updateFood/${_id}`, newItem)
             .then(res => {
 
                 if (res.data.modifiedCount > 0) {

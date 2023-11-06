@@ -53,16 +53,16 @@ const AuthProvider = ({ children }) => {
             const loggedUser = { email: userEmail };
             setUser(currentUser);
             if (currentUser) {
-                axios.post('http://localhost:9000/jwt', loggedUser, { withCredentials: true });
-                axios.get('http://localhost:9000/users', { withCredentials: true })
+                axios.post('https://dinein-server.vercel.app/jwt', loggedUser, { withCredentials: true });
+                axios.get('https://dinein-server.vercel.app/users', { withCredentials: true })
                     .then(res => {
                         const isExist = res.data?.find(dbUser => dbUser.email === currentUser.email);
                         if (!isExist) {
-                            axios.post('http://localhost:9000/users', currentUser);
+                            axios.post('https://dinein-server.vercel.app/users', currentUser);
                         }
                     });
             } else {
-                axios.get('http://localhost:9000/logout', { withCredentials: true })
+                axios.get('https://dinein-server.vercel.app/logout', { withCredentials: true })
 
             }
             setLoading(false);
@@ -75,7 +75,7 @@ const AuthProvider = ({ children }) => {
     }, []);
 
 
-    console.log(user)
+
 
 
     const userInfo = {

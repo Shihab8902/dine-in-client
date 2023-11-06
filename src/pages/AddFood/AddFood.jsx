@@ -29,7 +29,7 @@ const AddFood = () => {
 
         const newItem = { name, image, category, quantity, price, username, userEmail, foodOrigin, purchaseCount, description };
 
-        axios.post('http://localhost:9000/addFood', newItem)
+        axios.post('https://dinein-server.vercel.app/addFood', newItem)
             .then(res => {
                 if (res.data.acknowledged) {
                     Swal.fire({

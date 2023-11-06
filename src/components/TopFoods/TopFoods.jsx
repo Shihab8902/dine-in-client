@@ -12,7 +12,7 @@ const TopFoods = () => {
     const [topFoods, setTopFoods] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:9000/topSelling")
+        axios.get("https://dinein-server.vercel.app/topSelling")
             .then(res => setTopFoods(res.data))
     }, []);
 

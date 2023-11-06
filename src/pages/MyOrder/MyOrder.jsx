@@ -31,7 +31,7 @@ const MyOrder = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:9000/myOrder/${id}`)
+                axios.delete(`https://dinein-server.vercel.app/myOrder/${id}`)
                     .then(res => {
                         if (res.data.deletedCount > 0) {
                             const remaining = orders.filter(order => order._id !== id);

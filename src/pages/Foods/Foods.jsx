@@ -22,7 +22,7 @@ const Foods = () => {
 
 
     useEffect(() => {
-        axios.get(`http://localhost:9000/foods?page=${currentPage}&size=${foodsPerPage}&searchStr=${searchStr}&filterStr=${filterStr}`)
+        axios.get(`https://dinein-server.vercel.app/foods?page=${currentPage}&size=${foodsPerPage}&searchStr=${searchStr}&filterStr=${filterStr}`)
             .then(res => {
                 setAllFoods(res.data);
             });
@@ -32,7 +32,7 @@ const Foods = () => {
 
     //Get the total number of data
     useEffect(() => {
-        axios.get("http://localhost:9000/totalFoods")
+        axios.get("https://dinein-server.vercel.app/totalFoods")
             .then(res => setTotalFoods(res.data.total));
     }, []);
 
