@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import bg from '../../assets/images/login.jpg';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import { HiOutlineMail } from 'react-icons/hi';
 import { AiOutlineLock } from 'react-icons/ai';
@@ -15,6 +15,8 @@ import { Helmet } from 'react-helmet';
 const Login = () => {
 
     const navigate = useNavigate();
+    const location = useLocation();
+    console.log(location);
 
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
@@ -36,7 +38,7 @@ const Login = () => {
                         icon: "success"
                     })
                     form.reset();
-                    navigate("/")
+                    navigate(location.state ? location.state : "/");
                 }
             })
             .catch(error => {
@@ -59,7 +61,7 @@ const Login = () => {
                         text: "Your account has been logged in successfully.",
                         icon: "success"
                     })
-                    navigate("/");
+                    navigate(location.state ? location.state : "/");
                 }
             })
             .catch(error => {
@@ -115,7 +117,7 @@ const Login = () => {
                 <button onClick={handleSignInWithGoogle} className='flex items-center font-semibold gap-1 border bg-gray-200 rounded-lg py-2 px-3'><FcGoogle className='text-lg' /> Continue with Google</button>
             </div>
 
-            <p className='mt-5 text-center font-semibold text-sm'>Don't have an account? <Link to="/register" className='text-red-600 hover:underline'>Register</Link></p>
+            <p className='mt-5 text-center font-semibold text-sm'>Don't have an account? <Link state={location.state} to="/register" className='text-red-600 hover:underline'>Register</Link></p>
 
         </div>
     </div>

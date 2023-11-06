@@ -1,8 +1,8 @@
 import React from 'react'
 import { BsFillTrash3Fill } from 'react-icons/bs';
 
-const MyOrderCard = ({ order }) => {
-    const { image, name, price, purchaseQty, addedTime, addedBy } = order;
+const MyOrderCard = ({ order, handleDelete }) => {
+    const { image, name, price, purchaseQty, addedTime, addedBy, _id } = order;
 
     const purchaseDate = addedTime.split("GMT")[0];
 
@@ -20,7 +20,7 @@ const MyOrderCard = ({ order }) => {
                     <li className='font-semibold'>Price: <span className='font-normal font-sans'>${price}</span></li>
                 </ul>
                 <div className='text-right'>
-                    <button className='text-3xl text-red-500'><BsFillTrash3Fill /></button>
+                    <button onClick={() => handleDelete(_id)} className='text-3xl text-red-500'><BsFillTrash3Fill /></button>
                 </div>
             </div>
         </div>

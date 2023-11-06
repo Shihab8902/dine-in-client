@@ -3,6 +3,8 @@ import useAxiosSecure from '../../hooks/useAxiosSecure'
 import { UserContext } from '../../context/AuthProvider';
 import { Helmet } from 'react-helmet';
 import MyOrderCard from './MyOrderCard';
+import Swal from 'sweetalert2';
+import axios from 'axios';
 
 const MyOrder = () => {
 
@@ -17,6 +19,34 @@ const MyOrder = () => {
     }, []);
 
 
+
+    const handleDelete = (id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Are you sure want to delete this item?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "red",
+            cancelButtonColor: "green",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`http://localhost:9000/myOrder/${id}`)
+                    .then(res => {
+                        if (res.data.deletedCount > 0) {
+                            const remaining = orders.filter(order => order._id !== id);
+                            setOrders(remaining);
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                    })
+
+            }
+        });
+    }
 
 
 
@@ -34,7 +64,7 @@ const MyOrder = () => {
         {
             orders.length > 0 ? <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6 my-20'>
                 {
-                    orders.map(order => <MyOrderCard key={order._id} order={order} />)
+                    orders.map(order => <MyOrderCard key={order._id} order={order} handleDelete={handleDelete} />)
                 }
             </div>
                 :

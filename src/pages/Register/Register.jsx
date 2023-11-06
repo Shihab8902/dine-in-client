@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import bg from '../../assets/images/register.jpg';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import { HiOutlineMail } from 'react-icons/hi';
 import { AiOutlineLock } from 'react-icons/ai';
@@ -19,6 +19,9 @@ import { Helmet } from 'react-helmet';
 
 const Register = () => {
     const navigate = useNavigate();
+
+    const location = useLocation();
+
 
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const [isPasswordError, setIsPasswordError] = useState(false);
@@ -59,7 +62,7 @@ const Register = () => {
                                 icon: "success"
                             })
                             form.reset();
-                            navigate("/");
+                            navigate(location.state ? location.state : "/");
 
                         })
                 }
