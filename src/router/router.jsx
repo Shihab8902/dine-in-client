@@ -10,6 +10,7 @@ import MyAdd from "../pages/MyAdd/MyAdd";
 import AddFood from "../pages/AddFood/AddFood";
 import PrivateRoute from "../hooks/PrivateRoute";
 import UpdateFood from "../pages/UpdateFood/UpdateFood";
+import Foods from "../pages/Foods/Foods";
 
 export const router = createBrowserRouter([
     {
@@ -28,6 +29,10 @@ export const router = createBrowserRouter([
             {
                 path: "/register",
                 element: <Register />
+            },
+            {
+                path: "/foods",
+                element: <Foods />
             },
             {
                 path: "/food/:id",
