@@ -71,7 +71,7 @@ const PurchaseFood = () => {
                                     text: "Your order has been placed successfully.",
                                     icon: "success"
                                 });
-                                navigate("/")
+                                navigate("/myOrder")
                             }
                         })
                 }
@@ -104,7 +104,7 @@ const PurchaseFood = () => {
             </div>
 
 
-            <div className='flex gap-6  my-10'>
+            <div className='flex gap-6 flex-col  lg:flex-row  my-10'>
                 <div className='flex-1'>
                     <img className='w-full h-full rounded-lg' src={image} alt="" />
 
