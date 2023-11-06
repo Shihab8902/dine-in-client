@@ -20,7 +20,7 @@ const AddFood = () => {
         const image = form.image.value;
         const category = foodCategory;
         const quantity = form.quantity.value;
-        const price = form.price.value;
+        const price = parseFloat(form.price.value);
         const username = form.username.value;
         const userEmail = form.userEmail.value;
         const foodOrigin = form.foodOrigin.value;
@@ -81,7 +81,7 @@ const AddFood = () => {
                         <option value="Other">Other</option>
                     </select>
                     <input className='w-full mt-5 p-4 border-2 text-lg font-semibold placeholder:font-normal  outline-none rounded-md bg-white' type="text" name="username" id="username" defaultValue={user?.displayName} placeholder='Enter Food Chef Name' required />
-                    <input className='w-full p-4 border-2 mt-5 text-lg font-semibold placeholder:font-normal  outline-none rounded-md bg-white' type="number" name="price" id="price" placeholder='Enter Food Price' required />
+                    <input className='w-full p-4 border-2 mt-5 text-lg font-semibold placeholder:font-normal  outline-none rounded-md bg-white' type="text" name="price" id="price" placeholder='Enter Food Price' required />
                 </div>
 
 

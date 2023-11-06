@@ -1,12 +1,12 @@
 import React from 'react'
 import { Helmet } from 'react-helmet';
-import { useLoaderData } from 'react-router-dom'
+import { useLoaderData, useNavigate } from 'react-router-dom'
 import loadingAnimation from '../../assets/images/cooking.gif'
 
 const SingleFood = () => {
     const { data } = useLoaderData();
-    const { image, name, category, foodOrigin, description, username, userEmail, price } = data;
-    console.log(data);
+    const navigate = useNavigate();
+    const { image, name, category, foodOrigin, description, username, userEmail, price, _id } = data;
 
 
 
@@ -31,7 +31,7 @@ const SingleFood = () => {
                     <p className='font-semibold'>Food origin: <span className='font-normal '>{foodOrigin}</span></p>
                     <p className='font-semibold my-3'>Made by: <span className='font-normal'>{username} ({userEmail})</span> </p>
                     <p className='font-semibold font-sans text-3xl'>${price}</p>
-                    <button className='w-full mt-5 text-white font-semibold rounded-lg uppercase bg-orange-500 py-4'>Order now</button>
+                    <button onClick={() => navigate(`/purchase/${_id}`)} className='w-full mt-5 text-white font-semibold rounded-lg uppercase bg-orange-500 py-4'>Order now</button>
                 </div>
             </div>
                 :

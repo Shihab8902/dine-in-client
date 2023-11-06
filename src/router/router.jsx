@@ -11,6 +11,7 @@ import AddFood from "../pages/AddFood/AddFood";
 import PrivateRoute from "../hooks/PrivateRoute";
 import UpdateFood from "../pages/UpdateFood/UpdateFood";
 import Foods from "../pages/Foods/Foods";
+import PurchaseFood from "../pages/PurchaseFood/PurchaseFood";
 
 export const router = createBrowserRouter([
     {
@@ -55,6 +56,13 @@ export const router = createBrowserRouter([
                 path: "/updateFood/:id",
                 element: <PrivateRoute>
                     <UpdateFood />
+                </PrivateRoute>,
+                loader: ({ params }) => axios.get(`http://localhost:9000/food/${params.id}`)
+            },
+            {
+                path: "/purchase/:id",
+                element: <PrivateRoute>
+                    <PurchaseFood />
                 </PrivateRoute>,
                 loader: ({ params }) => axios.get(`http://localhost:9000/food/${params.id}`)
             }

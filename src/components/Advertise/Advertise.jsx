@@ -11,7 +11,7 @@ const Advertise = () => {
 
     //Get advertise item
     useEffect(() => {
-        axios.get('http://localhost:9000/food/6546705fe83c0452040601e6')
+        axios.get('http://localhost:9000/food/6548e0a2a69c9e326ce30602')
             .then(res => setAdItem(res.data))
     }, []);
 
