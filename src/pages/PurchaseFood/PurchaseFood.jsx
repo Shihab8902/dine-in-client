@@ -15,7 +15,6 @@ const PurchaseFood = () => {
     const navigate = useNavigate();
 
 
-
     const handleFoodPurchase = (e) => {
         e.preventDefault();
         const addedTime = new Date().toString();
@@ -64,7 +63,8 @@ const PurchaseFood = () => {
                 if (res.data.acknowledged) {
 
                     const newPurchaseCount = purchaseCount + parseInt(purchaseQty);
-                    axios.put(`https://dinein-server.vercel.app/purchaseCount/${_id}`, { count: newPurchaseCount })
+                    const newAvailableQuantity = quantity - purchaseQty;
+                    axios.put(`https://dinein-server.vercel.app/purchaseCount/${_id}`, { count: newPurchaseCount, newQuantity: newAvailableQuantity })
                         .then(res => {
                             if (res.data.modifiedCount > 0) {
                                 Swal.fire({

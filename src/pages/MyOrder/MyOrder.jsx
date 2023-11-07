@@ -38,7 +38,7 @@ const MyOrder = () => {
                             setOrders(remaining);
                             Swal.fire({
                                 title: "Deleted!",
-                                text: "Your file has been deleted.",
+                                text: "Your item has been deleted.",
                                 icon: "success"
                             });
                         }

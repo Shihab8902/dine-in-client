@@ -53,14 +53,19 @@ const AuthProvider = ({ children }) => {
             const loggedUser = { email: userEmail };
             setUser(currentUser);
             if (currentUser) {
-                axios.post('https://dinein-server.vercel.app/jwt', loggedUser, { withCredentials: true });
-                axios.get('https://dinein-server.vercel.app/users', { withCredentials: true })
+                axios.post('https://dinein-server.vercel.app/jwt', loggedUser, { withCredentials: true })
                     .then(res => {
-                        const isExist = res.data?.find(dbUser => dbUser.email === currentUser.email);
-                        if (!isExist) {
-                            axios.post('https://dinein-server.vercel.app/users', currentUser);
+                        if (res.data) {
+                            axios.get('https://dinein-server.vercel.app/users', { withCredentials: true })
+                                .then(res => {
+                                    const isExist = res.data?.find(dbUser => dbUser.email === currentUser.email);
+                                    if (!isExist) {
+                                        axios.post('https://dinein-server.vercel.app/users', currentUser);
+                                    }
+                                });
                         }
-                    });
+                    })
+
             } else {
                 axios.get('https://dinein-server.vercel.app/logout', { withCredentials: true })
 
