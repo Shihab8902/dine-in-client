@@ -3,6 +3,7 @@ import { useLoaderData, useNavigate } from 'react-router-dom'
 import { UserContext } from '../../context/AuthProvider';
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import { Helmet } from 'react-helmet';
 
 const PurchaseFood = () => {
 
@@ -89,13 +90,15 @@ const PurchaseFood = () => {
 
 
 
-
-
-
-
     return (
 
         <div>
+
+            <Helmet>
+                <title>Dinein | Purchase</title>
+            </Helmet>
+
+
             <div className='w-full h-[220px] text-white relative  rounded-lg  bg-center bg-cover' style={{ backgroundImage: "url(https://i.ibb.co/ZVScWBn/photo-1580052614034-c55d20bfee3b-auto-format-fit-crop-q-60-w-600-ixlib-rb-4-0.jpg)" }}>
                 <div className='absolute w-full h-full rounded-lg bg-[#000000ab] flex flex-col items-center justify-center'>
                     <h1 className='text-4xl text-center font-semibold mb-2'>Purchase Food Item</h1>

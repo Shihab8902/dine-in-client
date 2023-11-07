@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import BlogCard from './BlogCard';
 
 import loadingAnimation from '../../assets/images/cooking.gif';
+import { Helmet } from 'react-helmet';
 
 const Blogs = () => {
     const [blogs, setBlogs] = useState([]);
@@ -14,6 +15,10 @@ const Blogs = () => {
 
 
     return <div>
+
+        <Helmet>
+            <title>Dinein | Blogs </title>
+        </Helmet>
 
         <h3 className='text-center font-semibold text-4xl mt-10 mb-5'>Blogs</h3> <hr className='mb-10' />
 
