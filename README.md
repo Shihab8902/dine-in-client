@@ -1,5 +1,6 @@
 # Dinein
 ### Live Site: https://dineinbyshihab.netlify.app
+### Server Side: https://github.com/Shihab8902/dine-in-server
 
 ----
 Dinein is a restaurant management website where user can buy foods also add listing of their made foods for selling.
